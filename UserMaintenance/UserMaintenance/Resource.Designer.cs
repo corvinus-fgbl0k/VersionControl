@@ -61,29 +61,29 @@ namespace UserMaintenance {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LastName.
+        ///   Looks up a localized string similar to Hozzáadás.
         /// </summary>
-        internal static string String1 {
+        internal static string Add {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("Add", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FirstName.
+        ///   Looks up a localized string similar to Keresztnév.
         /// </summary>
-        internal static string String2 {
+        internal static string FirstName {
             get {
-                return ResourceManager.GetString("String2", resourceCulture);
+                return ResourceManager.GetString("FirstName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
+        ///   Looks up a localized string similar to Vezetéknév.
         /// </summary>
-        internal static string String3 {
+        internal static string LastName {
             get {
-                return ResourceManager.GetString("String3", resourceCulture);
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
     }

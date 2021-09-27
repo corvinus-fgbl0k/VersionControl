@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String1" xml:space="preserve">
-    <value>LastName</value>
-    <comment>Vezetéknév</comment>
+  <data name="Add" xml:space="preserve">
+    <value>Hozzáadás</value>
   </data>
-  <data name="String2" xml:space="preserve">
-    <value>FirstName</value>
-    <comment>Keresztnév</comment>
+  <data name="FirstName" xml:space="preserve">
+    <value>Keresztnév</value>
   </data>
-  <data name="String3" xml:space="preserve">
-    <value>Add</value>
-    <comment>Hozzáadás</comment>
+  <data name="LastName" xml:space="preserve">
+    <value>Vezetéknév</value>
   </data>
 </root>
