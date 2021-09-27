@@ -22,6 +22,7 @@ namespace UserMaintenance
 
             btnAdd.Text = Resource.Add;
             btnFajlba.Text = Resource.Write;
+            btnTorles.Text = Resource.Delete;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -53,6 +54,11 @@ namespace UserMaintenance
                     }
                 }
             }
+        }
+
+        private void btnTorles_Click(object sender, EventArgs e)
+        {
+            users.Remove((User)listBox1.SelectedItem);
         }
     }
 }
