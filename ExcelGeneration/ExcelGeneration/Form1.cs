@@ -12,9 +12,15 @@ namespace ExcelGeneration
 {
     public partial class Form1 : Form
     {
+        RealEstateEntities context = new RealEstateEntities();
+        List<Flat> Flats;
         public Form1()
         {
             InitializeComponent();
+            LoadData();
+        }
+        private void LoadData() {
+            List<Flat> Flats = context.Flats.ToList();
         }
     }
 }
