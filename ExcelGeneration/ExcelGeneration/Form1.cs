@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace ExcelGeneration
 {
@@ -16,8 +18,8 @@ namespace ExcelGeneration
         List<Flat> Flats;
         public Form1()
         {
-            InitializeComponent();
-            LoadData();
+            InitializeComponent();            
+            LoadData();            
         }
         private void LoadData() {
             List<Flat> Flats = context.Flats.ToList();
