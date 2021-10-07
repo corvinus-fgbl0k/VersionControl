@@ -80,7 +80,15 @@ namespace ExcelGeneration
                 values[counter, 1] = f.Vendor;
                 values[counter, 2] = f.Side;
                 values[counter, 3] = f.District;
-                values[counter, 4] = f.Elevator;
+                if (f.Elevator==true)
+                {
+                    values[counter, 4] = "Van";
+                }
+                else
+                {
+                    values[counter, 4] = "Nincs";
+                };
+                
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
@@ -110,6 +118,20 @@ namespace ExcelGeneration
             headerRange.RowHeight = 40;
             headerRange.Interior.Color = Color.LightBlue;
             headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+
+            Excel.Range AroundBorder = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID,9));
+            AroundBorder.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range FirstColumn = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID, 1));
+            FirstColumn.Font.Bold = true;
+            FirstColumn.Interior.Color = Color.LightYellow;
+
+            Excel.Range LastCloumn = xlSheet.get_Range(GetCell(2, 9), GetCell(lastRowID, 9));
+            LastCloumn.Interior.Color = Color.LightGreen;
+            LastCloumn.NumberFormat = "0.00";
         }
 
         private string GetCell(int x, int y)
