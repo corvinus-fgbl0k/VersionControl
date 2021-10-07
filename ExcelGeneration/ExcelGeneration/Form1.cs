@@ -20,6 +20,17 @@ namespace ExcelGeneration
         Excel.Application xlApp;
         Excel.Workbook xlWB;
         Excel.Worksheet xlSheet;
+
+        string[] headers = new string[] {
+             "Kód",
+             "Eladó",
+             "Oldal",
+             "Kerület",
+             "Lift",
+             "Szobák száma",
+             "Alapterület (m2)",
+             "Ár (mFt)",
+             "Négyzetméter ár (Ft/m2)"};
         public Form1()
         {
             InitializeComponent();            
@@ -27,8 +38,8 @@ namespace ExcelGeneration
             try
             {
                 xlApp = new Excel.Application();
-                xlWB = new Excel.Workbook();
-                xlSheet = new Excel.Worksheet();
+                xlWB = xlApp.Workbooks.Add(Missing.Value);
+                xlSheet = xlWB.ActiveSheet;
 
                 CreateTable();
 
@@ -45,24 +56,19 @@ namespace ExcelGeneration
                 xlWB = null;
                 xlApp = null;
             }
+            
         }
-
+        private void LoadData()
+        {
+           Flats = context.Flats.ToList();
+        }        
         private void CreateTable()
         {
-            string[] headers = new string[] {
-             "Kód",
-             "Eladó",
-             "Oldal",
-             "Kerület",
-             "Lift",
-             "Szobák száma",
-             "Alapterület (m2)",
-             "Ár (mFt)",
-             "Négyzetméter ár (Ft/m2)"};
+
 
             for (int oszlop = 0; oszlop < headers.Length; oszlop++)
             {
-                xlSheet.Cells[1, oszlop+1] = headers[0];
+                xlSheet.Cells[1, oszlop+1] = headers[oszlop];
             }
 
             object[,] values = new object[Flats.Count, headers.Length];
@@ -86,7 +92,21 @@ namespace ExcelGeneration
              GetCell(2, 1),
              GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
 
+            FormatTable();
         }
+
+        private void FormatTable()
+        {
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+        }
+
         private string GetCell(int x, int y)
         {
             string ExcelCoordinate = "";
@@ -102,10 +122,6 @@ namespace ExcelGeneration
             ExcelCoordinate += x.ToString();
 
             return ExcelCoordinate;
-        }
-
-        private void LoadData() {
-            List<Flat> Flats = context.Flats.ToList();
         }
     }
 }
