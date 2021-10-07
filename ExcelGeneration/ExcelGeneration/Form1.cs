@@ -45,7 +45,6 @@ namespace ExcelGeneration
 
                 xlApp.Visible = true;
                 xlApp.UserControl = true;
-
             }
             catch (Exception ex)
             {
@@ -55,8 +54,7 @@ namespace ExcelGeneration
                 xlApp.Quit();
                 xlWB = null;
                 xlApp = null;
-            }
-            
+            }           
         }
         private void LoadData()
         {
@@ -64,8 +62,6 @@ namespace ExcelGeneration
         }        
         private void CreateTable()
         {
-
-
             for (int oszlop = 0; oszlop < headers.Length; oszlop++)
             {
                 xlSheet.Cells[1, oszlop+1] = headers[oszlop];
@@ -96,7 +92,6 @@ namespace ExcelGeneration
 
                 counter++;
             }
-
             xlSheet.get_Range(
              GetCell(2, 1),
              GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
@@ -107,7 +102,6 @@ namespace ExcelGeneration
 
             FormatTable();
         }
-
         private void FormatTable()
         {
             Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
@@ -118,7 +112,6 @@ namespace ExcelGeneration
             headerRange.RowHeight = 40;
             headerRange.Interior.Color = Color.LightBlue;
             headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
-
 
             int lastRowID = xlSheet.UsedRange.Rows.Count;
 
