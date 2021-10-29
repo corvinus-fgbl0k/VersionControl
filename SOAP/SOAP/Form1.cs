@@ -1,4 +1,5 @@
-﻿using SOAP.MnbServiceReference;
+﻿using SOAP.Entities;
+using SOAP.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,17 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace SOAP
 {
     public partial class Form1 : Form
     {
+        public string results;
+        BindingList<RateData> Rates = new BindingList<RateData>();
         public Form1()
         {
             InitializeComponent();
-            Lekerdezes();            
-        }
-
+            Lekerdezes();
+            Loadxml(results);
+            dataGridView1.DataSource = Rates;
+        }        
         private void Lekerdezes()
         {
             var mnbService = new MNBArfolyamServiceSoapClient();
@@ -32,6 +37,28 @@ namespace SOAP
             var response = mnbService.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
+            results = result;
+        }
+        private void Loadxml(string results)
+        {
+            var xml = new XmlDocument();
+            xml.LoadXml(results);
+
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                var rate = new RateData();
+                Rates.Add(rate);
+
+                rate.Date = DateTime.Parse(element.GetAttribute("date"));
+
+                var childElement = (XmlElement)element.ChildNodes[0];
+                rate.Currency = childElement.GetAttribute("curr");
+
+                var unit = decimal.Parse(childElement.GetAttribute("unit"));
+                var value = decimal.Parse(childElement.InnerText);
+                if (unit != 0)
+                    rate.Value = value / unit;
+            }
         }
     }
 }
