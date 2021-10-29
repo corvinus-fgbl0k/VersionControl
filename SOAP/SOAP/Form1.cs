@@ -18,10 +18,31 @@ namespace SOAP
     {
         public string results;
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
+            //GetCurrencies();
             RefreshData();
+
+        }
+
+        private void GetCurrencies()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+
+            GetCurrenciesRequestBody request = new GetCurrenciesRequestBody();
+            var response = mnbService.GetCurrencies(request);
+            var results = response.GetCurrenciesResult;
+
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(results);
+            foreach (XmlElement item in xml.DocumentElement.ChildNodes[0])
+            {
+                string currency = item.InnerText;
+                Currencies.Add(currency);
+            }
+            comboBox1.DataSource = Currencies;
         }
 
         private void RefreshData()
