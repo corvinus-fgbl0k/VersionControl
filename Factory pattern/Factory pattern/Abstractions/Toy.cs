@@ -22,7 +22,7 @@ namespace Factory_pattern.Abstractions
             DrawImage(e.Graphics);
         }
         protected abstract void DrawImage(Graphics g);
-        public void MoveBall()
+        public void MoveToy()
         {
             Left += 1;
         }
