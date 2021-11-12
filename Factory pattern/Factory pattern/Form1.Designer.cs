@@ -36,17 +36,14 @@ namespace Factory_pattern
             this.btnCar = new System.Windows.Forms.Button();
             this.btnBall = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.mainPanel.SuspendLayout();
+            this.btnColor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.label1);
-            this.mainPanel.Controls.Add(this.btnBall);
-            this.mainPanel.Controls.Add(this.btnCar);
             this.mainPanel.Location = new System.Drawing.Point(12, 12);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(776, 426);
+            this.mainPanel.Size = new System.Drawing.Size(776, 222);
             this.mainPanel.TabIndex = 0;
             // 
             // createTimer
@@ -63,7 +60,7 @@ namespace Factory_pattern
             // 
             // btnCar
             // 
-            this.btnCar.Location = new System.Drawing.Point(144, 181);
+            this.btnCar.Location = new System.Drawing.Point(196, 254);
             this.btnCar.Name = "btnCar";
             this.btnCar.Size = new System.Drawing.Size(75, 23);
             this.btnCar.TabIndex = 0;
@@ -73,7 +70,7 @@ namespace Factory_pattern
             // 
             // btnBall
             // 
-            this.btnBall.Location = new System.Drawing.Point(324, 181);
+            this.btnBall.Location = new System.Drawing.Point(324, 254);
             this.btnBall.Name = "btnBall";
             this.btnBall.Size = new System.Drawing.Size(75, 23);
             this.btnBall.TabIndex = 1;
@@ -84,23 +81,36 @@ namespace Factory_pattern
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(186, 343);
+            this.label1.Location = new System.Drawing.Point(252, 303);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Coming next:";
+            // 
+            // btnColor
+            // 
+            this.btnColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnColor.Location = new System.Drawing.Point(437, 254);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(75, 23);
+            this.btnColor.TabIndex = 3;
+            this.btnColor.UseVisualStyleBackColor = false;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnColor);
+            this.Controls.Add(this.btnBall);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnCar);
             this.Controls.Add(this.mainPanel);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -112,6 +122,7 @@ namespace Factory_pattern
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBall;
         private System.Windows.Forms.Button btnCar;
+        private System.Windows.Forms.Button btnColor;
     }
 }
 

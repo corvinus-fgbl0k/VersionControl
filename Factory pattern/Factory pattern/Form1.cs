@@ -81,5 +81,18 @@ namespace Factory_pattern
         {
             Factory = new BallFactory();
         }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var coloPicker = new ColorDialog();
+
+            coloPicker.Color = button.BackColor;
+            if (coloPicker.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            button.BackColor = coloPicker.Color;
+        }
     }
 }
