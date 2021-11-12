@@ -97,5 +97,26 @@ namespace Factory_pattern
             }
             button.BackColor = coloPicker.Color;
         }
+        private void btnColor2_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var coloPicker = new ColorDialog();
+
+            coloPicker.Color = button.BackColor;
+            if (coloPicker.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            button.BackColor = coloPicker.Color;
+        }
+
+        private void btnPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory()
+            {
+                BoxColor = btnColor.BackColor,
+                RibbonColor = btnColor2.BackColor
+            };
+        }
     }
 }

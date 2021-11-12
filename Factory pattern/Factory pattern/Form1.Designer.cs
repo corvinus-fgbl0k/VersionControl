@@ -37,6 +37,8 @@ namespace Factory_pattern
             this.btnBall = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnColor = new System.Windows.Forms.Button();
+            this.btnPresent = new System.Windows.Forms.Button();
+            this.btnColor2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -97,11 +99,33 @@ namespace Factory_pattern
             this.btnColor.UseVisualStyleBackColor = false;
             this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
+            // btnPresent
+            // 
+            this.btnPresent.Location = new System.Drawing.Point(564, 254);
+            this.btnPresent.Name = "btnPresent";
+            this.btnPresent.Size = new System.Drawing.Size(97, 23);
+            this.btnPresent.TabIndex = 4;
+            this.btnPresent.Text = "PRESENT";
+            this.btnPresent.UseVisualStyleBackColor = true;
+            this.btnPresent.Click += new System.EventHandler(this.btnPresent_Click);
+            // 
+            // btnColor2
+            // 
+            this.btnColor2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnColor2.Location = new System.Drawing.Point(437, 296);
+            this.btnColor2.Name = "btnColor2";
+            this.btnColor2.Size = new System.Drawing.Size(75, 23);
+            this.btnColor2.TabIndex = 5;
+            this.btnColor2.UseVisualStyleBackColor = false;
+            this.btnColor2.Click += new System.EventHandler(this.btnColor2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnColor2);
+            this.Controls.Add(this.btnPresent);
             this.Controls.Add(this.btnColor);
             this.Controls.Add(this.btnBall);
             this.Controls.Add(this.label1);
@@ -123,6 +147,8 @@ namespace Factory_pattern
         private System.Windows.Forms.Button btnBall;
         private System.Windows.Forms.Button btnCar;
         private System.Windows.Forms.Button btnColor;
+        private System.Windows.Forms.Button btnPresent;
+        private System.Windows.Forms.Button btnColor2;
     }
 }
 
