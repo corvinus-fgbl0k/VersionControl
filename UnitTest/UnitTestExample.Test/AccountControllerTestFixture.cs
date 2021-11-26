@@ -26,5 +26,12 @@ namespace UnitTestExample.Test
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        public void TestValidatePassword(string email, bool expectedResult)
+        {
+
+        }
+
+
+
     }
 }
