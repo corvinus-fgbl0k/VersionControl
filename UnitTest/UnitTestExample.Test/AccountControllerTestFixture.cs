@@ -1,11 +1,14 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using System;
 using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitTestExample.Abstractions;
 using UnitTestExample.Controllers;
+using UnitTestExample.Entities;
 
 namespace UnitTestExample.Test
 {
@@ -39,13 +42,19 @@ namespace UnitTestExample.Test
         ]
         public void TestRegisterHappyPath(string email, string password)
         {
+            var accountServiceMock = new Mock<IAccountManager>(MockBehavior.Strict);
+            accountServiceMock
+                .Setup(m => m.CreateAccount(It.IsAny<Account>()))
+                .Returns<Account>(a => a);
             var accountController = new AccountController();
+            accountController.AccountManager = accountServiceMock.Object;
 
             var actualResult = accountController.Register(email, password);
 
             Assert.AreEqual(email, actualResult.Email);
             Assert.AreEqual(password, actualResult.Password);
             Assert.AreNotEqual(Guid.Empty, actualResult.ID);
+            accountServiceMock.Verify(m => m.CreateAccount(actualResult), Times.Once);
         }
         [
             Test,
@@ -70,6 +79,29 @@ namespace UnitTestExample.Test
                 Assert.IsInstanceOf<ValidationException>(ex);
             }
 
+        }
+        [
+            Test,
+            TestCase("irf@uni-corvinus.hu", "Abcd1234")
+        ]
+        public void TestRegisterApplicationException(string newEmail, string newPassword)
+        {
+            var accountServiceMock = new Mock<IAccountManager>(MockBehavior.Strict);
+            accountServiceMock
+                .Setup(m => m.CreateAccount(It.IsAny<Account>()))
+                .Throws<ApplicationException>();
+            var accountController = new AccountController();
+            accountController.AccountManager = accountServiceMock.Object;
+
+            try
+            {
+                var actualResult = accountController.Register(newEmail, newPassword);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOf<ApplicationException>(ex);
+            }
         }
 
     }
