@@ -131,5 +131,22 @@ namespace mikro
                 }
             }
         }
+        public void DisplayResults()
+        {
+
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DisplayResults();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = ofd.FileName;
+            }
+        }
     }
 }
