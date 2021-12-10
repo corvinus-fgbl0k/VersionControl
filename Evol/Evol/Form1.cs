@@ -60,6 +60,7 @@ namespace Evol
             {
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
+                btnStart.Enabled = true;
                 return;
             }
 
@@ -78,6 +79,15 @@ namespace Evol
                     gc.AddPlayer(b.Mutate());
             }
             gc.Start();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }

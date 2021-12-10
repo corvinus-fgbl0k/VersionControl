@@ -30,6 +30,7 @@ namespace Evol
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -41,11 +42,23 @@ namespace Evol
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
+            // btnStart
+            // 
+            this.btnStart.Enabled = false;
+            this.btnStart.Location = new System.Drawing.Point(16, 404);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.TabIndex = 1;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -57,6 +70,7 @@ namespace Evol
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnStart;
     }
 }
 
